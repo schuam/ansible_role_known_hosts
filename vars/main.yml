@@ -2,4 +2,3 @@
 known_hosts_repo_local_destination: "/etc/ssh/known_hosts.d"
 known_hosts_file_name: "ssh_known_hosts"
 known_hosts_link_path: "/etc/ssh/{{ known_hosts_file_name }}"
-known_hosts_repo_accept_hostkey: false
