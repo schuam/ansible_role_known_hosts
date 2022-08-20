@@ -1,8 +1,4 @@
 ---
 known_hosts_repo: "https://github.com/schuam/known_hosts.d.git"
 known_hosts_repo_version: main
-known_hosts_repo_local_destination: "/etc/ssh/known_hosts.d"
 known_hosts_repo_remote_name: "github"
-known_hosts_repo_accept_hostkey: false
-known_hosts_file_name: "ssh_known_hosts"
-known_hosts_link_path: "/etc/ssh/{{ known_hosts_file_name }}"
