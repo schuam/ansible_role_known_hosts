@@ -1,2 +1,23 @@
 ---
-# tasks file for known_hosts
+- name: Make sure git is installed.
+  ansible.builtin.package:
+    name: "git"
+    state: present
+    update_cache: false
+  become: true
+
+- name: Ensure known_hosts.d repo is cloned locally.
+  ansible.builtin.git:
+    repo: "{{ known_hosts_repo }}"
+    dest: "{{ known_hosts_repo_local_destination }}"
+    version: "{{ known_hosts_repo_version }}"
+    remote: "{{ known_hosts_repo_remote_name }}"
+    accept_hostkey: "{{ known_hosts_repo_accept_hostkey }}"
+  become: true
+
+- name: Make link to ssh_known_hosts in /etc/ssh/.
+  ansible.builtin.file:
+    src: "{{ known_hosts_repo_local_destination }}/{{ known_hosts_file_name }}"
+    dest: "{{ known_hosts_link_path }}"
+    state: link
+  become: true
