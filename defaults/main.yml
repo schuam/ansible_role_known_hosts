@@ -1,2 +1,4 @@
 ---
-# defaults file for known_hosts
+known_hosts_repo: "https://github.com/schuam/known_hosts.d.git"
+known_hosts_repo_version: main
+known_hosts_repo_remote_name: "github"
