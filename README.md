@@ -1,38 +1,56 @@
-Role Name
-=========
+# Ansible Role: Known Hosts
 
-A brief description of the role goes here.
+I have a [git repository](https://github.com/schuam/known_hosts.d) with public
+ssh key which I believe to be correct. These keys belong to services that I use
+regularly on different machines. In order to not have to check the keys every
+time I use one of these services on a new machine, I set up this role. It
+clones my git repo to /etc/ssh/known_hosts.d/ and then makes a linke
+/etc/ssh/ssh_known_hosts that points to the ssh_known_hosts file in that repo.
 
-Requirements
-------------
+This way, there are system-wide known hosts that are known to any user of the
+system. Additionally each user can have their own addtional known hosts in
+~/.ssh/known_hosts.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
-Role Variables
---------------
+# Requirements
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+None
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+# Role Variables
 
-Example Playbook
-----------------
+The following variables can be found in vars/main.yml.
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+- known_hosts_repo_local_destination: Location to which the known host repo
+                                      will be cloned.
+- known_hosts_file_name:              Name of the system-wide known host file.
+- known_hosts_link_path:              Path of the link to the known host file.
+
+The following variables can be found in defaults/main.yml:
+
+known_hosts_repo:             URL to the repo holding the public ssh keys.
+known_hosts_repo_version:     Version of the repo to be cloned.
+known_hosts_repo_remote_name: Name of the remote in the cloned repo.
+
+
+# Dependencies
+
+None
+
+
+# Example Playbook
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: schuam.known_hosts }
 
-License
--------
 
-BSD
+## License
 
-Author Information
-------------------
+MIT
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+
+## Author Information
+
+This role was created in 2022 by [Andreas Schuster](https://www.schuam.de/).
+
