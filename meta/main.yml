@@ -1,3 +1,4 @@
+---
 galaxy_info:
   role_name: known_hosts
   namespace: schuam
@@ -17,5 +18,4 @@ galaxy_info:
     - system
     - config
     - ssh
-    - known_hosts
 dependencies: []
